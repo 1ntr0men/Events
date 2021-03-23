@@ -6,9 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".ActivitySecond">
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:background="#F4F4F4"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/didact_gothic"
+                android:text="Welcome home"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:background="#EDEDED"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,8 +46,8 @@
 
         <ImageButton
             android:id="@+id/People_button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:background="#00FFFFFF"
             android:clickable="true"
@@ -30,8 +59,8 @@
 
         <ImageButton
             android:id="@+id/Man_button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:background="#00FFFFFF"
             android:clickable="true"
@@ -45,23 +74,23 @@
 
         <ImageButton
             android:id="@+id/Plus_button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:background="#00FFFFFF"
             android:clickable="true"
             android:contentDescription="@string/button"
-            android:scaleType="fitXY"
-            android:scaleX="0.4"
-            android:scaleY="0.5"
+            android:scaleType="fitCenter"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
             android:tint="#C8C8C8"
-            app:srcCompat="@drawable/plus_button" />
+            app:srcCompat="@drawable/plus3" />
 
         <ImageButton
             android:id="@+id/Calendar_button"
             style="@style/Widget.AppCompat.ImageButton"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:adjustViewBounds="false"
             android:background="#00FFFFFF"
@@ -76,27 +105,18 @@
 
         <ImageButton
             android:id="@+id/Menu_button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:background="#00FFFFFF"
             android:clickable="true"
             android:contentDescription="@string/button"
             android:scaleType="fitCenter"
-            android:scaleX="0.5"
-            android:scaleY="0.5"
+            android:scaleX="0.4"
+            android:scaleY="0.4"
             android:tint="#C8C8C8"
             app:srcCompat="@drawable/menu_button" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

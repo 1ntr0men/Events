@@ -38,7 +38,6 @@ public class ActivitySecond extends AppCompatActivity {
         peopleButton = findViewById(R.id.People_button);
         menuButton = findViewById(R.id.Menu_button);
 
-        debug = findViewById(R.id.textView2);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

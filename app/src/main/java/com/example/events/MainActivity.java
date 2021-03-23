@@ -6,10 +6,17 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 
+import com.example.events.ui.main.ManFragment;
+import com.example.events.ui.main.MenuFragment;
+import com.example.events.ui.main.PeopleFragment;
+import com.example.events.ui.main.PlusFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,11 +35,11 @@ import com.example.events.ui.main.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton manButton;
-    ImageButton plusButton;
-    ImageButton calendarButton;
-    ImageButton peopleButton;
-    ImageButton menuButton;
+    public ImageButton manButton;
+    public ImageButton plusButton;
+    public ImageButton calendarButton;
+    public ImageButton peopleButton;
+    public ImageButton menuButton;
 
     TextView debug;
 
@@ -48,11 +55,14 @@ public class MainActivity extends AppCompatActivity {
         peopleButton = findViewById(R.id.People_button);
         menuButton = findViewById(R.id.Menu_button);
 
+        Fragment _menu = new MenuFragment();
+        Fragment _man = new ManFragment();
+        Fragment _calendar = new CalendarFragment();
+        Fragment _plus = new PlusFragment();
+        Fragment _people = new PeopleFragment();
 
-
-        debug = findViewById(R.id.textView2);
-
-        Touch(menuButton);Touch(manButton);Touch(calendarButton);Touch(plusButton);Touch(peopleButton);
+        Touch(menuButton, _menu);Touch(manButton, _man);Touch(calendarButton, _calendar);
+        Touch(plusButton, _plus);Touch(peopleButton, _people);
 
 
 
@@ -72,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 //        });
         //
     }
-    private void Touch(ImageButton butn){
+    private void Touch(ImageButton butn, Fragment f){
         butn.setOnTouchListener(new View.OnTouchListener() {
             Animation clickAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.anim_clicked);
             ObjectAnimator objectAnimatorx;
@@ -86,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
-                    butn.setColorFilter(0xFFD0D0D0);
+                    butn.setColorFilter(0xFFD8D8D8);
                     objectAnimatorx= ObjectAnimator.ofFloat(butn, "ScaleX", startPos, 0.8f*startPos);
                     objectAnimatorx.setDuration(100);
                     objectAnimatory= ObjectAnimator.ofFloat(butn, "ScaleY", startPos, 0.8f*startPos);
@@ -97,7 +107,8 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    butn.setColorFilter(0xFFC8C8C8);
+                    loadFragment(f);
+                    highlightButton(butn);
                    // butn.clearAnimation();
                     objectAnimatorx= ObjectAnimator.ofFloat(butn, "ScaleX", 0.8f*startPos, startPos);
                     objectAnimatory= ObjectAnimator.ofFloat(butn, "ScaleY", 0.8f*startPos, startPos);
@@ -111,6 +122,28 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public void loadFragment(Fragment f){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.mainLayout, f);
+        //TODO: fix bug with button highlight
+       // fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    public void makeButtonsClear(){
+        manButton.setColorFilter(0xFFC8C8C8);
+        plusButton.setColorFilter(0xFFC8C8C8);
+        calendarButton.setColorFilter(0xFFC8C8C8);
+        peopleButton.setColorFilter(0xFFC8C8C8);
+        menuButton.setColorFilter(0xFFC8C8C8);
+    }
+
+    public void highlightButton(ImageButton btn){
+        makeButtonsClear();
+        btn.setColorFilter(0xFFA0A0A0);
     }
 
 
