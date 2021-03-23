@@ -45,6 +45,23 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
+            android:id="@+id/Calendar_button"
+            style="@style/Widget.AppCompat.ImageButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="false"
+            android:background="#00FFFFFF"
+            android:clickable="true"
+            android:contentDescription="@string/button"
+            android:cropToPadding="false"
+            android:scaleType="fitCenter"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:tint="#C8C8C8"
+            app:srcCompat="@drawable/calendar1" />
+
+        <ImageButton
             android:id="@+id/People_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -56,21 +73,6 @@
             android:scaleX="0.9"
             android:scaleY="0.9"
             app:srcCompat="@drawable/people" />
-
-        <ImageButton
-            android:id="@+id/Man_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="#00FFFFFF"
-            android:clickable="true"
-            android:contentDescription="@string/button"
-            android:scaleType="fitCenter"
-            android:scaleX="0.5"
-            android:scaleY="0.5"
-            android:tint="#C8C8C8"
-            android:tintMode="src_in"
-            app:srcCompat="@drawable/man" />
 
         <ImageButton
             android:id="@+id/Plus_button"
@@ -87,21 +89,19 @@
             app:srcCompat="@drawable/plus3" />
 
         <ImageButton
-            android:id="@+id/Calendar_button"
-            style="@style/Widget.AppCompat.ImageButton"
+            android:id="@+id/Man_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:adjustViewBounds="false"
             android:background="#00FFFFFF"
             android:clickable="true"
             android:contentDescription="@string/button"
-            android:cropToPadding="false"
             android:scaleType="fitCenter"
             android:scaleX="0.5"
             android:scaleY="0.5"
             android:tint="#C8C8C8"
-            app:srcCompat="@drawable/calendar1" />
+            android:tintMode="src_in"
+            app:srcCompat="@drawable/man" />
 
         <ImageButton
             android:id="@+id/Menu_button"
