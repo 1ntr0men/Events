@@ -6,33 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".ActivitySecond">
 
-    <FrameLayout
-        android:id="@+id/mainLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="50dp"
-        android:background="#F4F4F4"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/didact_gothic"
-                android:text="Welcome home"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.3" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </FrameLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:clickable="true"
+        android:contentDescription="@string/add_event"
+        android:focusable="true"
+        android:src="@drawable/plus3"
+        android:visibility="gone"
+        app:backgroundTint="#EDEDED"
+        app:layout_constraintBottom_toBottomOf="@+id/mainLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="30dp"
+        tools:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -83,10 +72,10 @@
             android:clickable="true"
             android:contentDescription="@string/button"
             android:scaleType="fitCenter"
-            android:scaleX="0.8"
-            android:scaleY="0.8"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
             android:tint="#C8C8C8"
-            app:srcCompat="@drawable/plus3" />
+            app:srcCompat="@drawable/events" />
 
         <ImageButton
             android:id="@+id/Man_button"
@@ -118,5 +107,34 @@
             app:srcCompat="@drawable/menu_button" />
 
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:background="#F4F4F4"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/didact_gothic"
+                android:text="Welcome home"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
