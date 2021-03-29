@@ -191,10 +191,12 @@ public class MainActivity extends AppCompatActivity {
                     public void onBackStackChanged() { //проверка изменения back stack для правильного отображения кнопки добавления ивента
                         if(curstate == true){
                             setAddButtonVisibility(View.VISIBLE);
+                            ISADDFRAGMENTOPENED = false;
                             curstate = false;
                         }
                         else{
                             setAddButtonVisibility(View.GONE);
+                            curstate = true;
                         }
                     }
                 });
