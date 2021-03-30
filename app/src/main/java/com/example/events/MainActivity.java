@@ -25,6 +25,7 @@ import androidx.transition.Slide;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,7 +42,7 @@ import com.example.events.ui.main.SectionsPagerAdapter;
 
 import java.beans.PropertyChangeListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FragmentAdd.FragmentTransfer {
 
     public ImageButton manButton;
     public ImageButton plusButton;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView openText;
     public FloatingActionButton addButton;
     private boolean ISADDFRAGMENTOPENED=false;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +68,13 @@ public class MainActivity extends AppCompatActivity {
         openText = findViewById(R.id.textView3);
         addButton = findViewById(R.id.fabAdd);
 
+
         Fragment _menu = new MenuFragment();
         Fragment _man = new ManFragment();
         Fragment _calendar = new CalendarFragment();
         Fragment _plus = new PlusFragment();
         Fragment _people = new PeopleFragment();
+
 
         Touch(menuButton, _menu);Touch(manButton, _man);Touch(calendarButton, _calendar);
         Touch(plusButton, _plus);Touch(peopleButton, _people);
@@ -146,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadFragment(Fragment f){
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.replace(R.id.mainLayout, f);
@@ -180,11 +184,12 @@ public class MainActivity extends AppCompatActivity {
                 slideTransition.setDuration(100);
                 addFragment.setEnterTransition(slideTransition);
                 //метод loadFragment не использован, тк более тонкая настройка транзакции
-                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.mainLayout, addFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+
                 fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
                     private boolean curstate=false;
                     @Override
@@ -235,5 +240,11 @@ public class MainActivity extends AppCompatActivity {
                     .start();
         }
 
+    }
+
+    @Override
+    public void returnBack() {      //имплементированный метод из FragmentAdd для реализации кнопки ок
+       //Log.d("RRR","Ok!");
+        fragmentManager.popBackStack();
     }
 }
