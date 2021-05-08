@@ -6,7 +6,7 @@ import android.animation.ObjectAnimator;
 import android.os.Bundle;
 
 import com.example.events.ui.main.FragmentAdd;
-import com.example.events.ui.main.ProfileFragment;
+import com.example.events.ui.main.SignInFragment;
 import com.example.events.ui.main.MenuFragment;
 import com.example.events.ui.main.GroupFragment;
 import com.example.events.ui.main.PlusFragment;
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements FragmentAdd.Fragm
     public ImageButton manButton;
     public ImageButton plusButton;
     public ImageButton calendarButton;
-    public ImageButton peopleButton;
+    public ImageButton signInButton;
     public ImageButton menuButton;
     private TextView openText;
     public FloatingActionButton addButton;
@@ -45,21 +45,21 @@ public class MainActivity extends AppCompatActivity implements FragmentAdd.Fragm
         manButton = findViewById(R.id.Man_button);
         plusButton = findViewById(R.id.Plus_button);
         calendarButton = findViewById(R.id.Calendar_button);
-        peopleButton = findViewById(R.id.People_button);
+        signInButton = findViewById(R.id.People_button);
         menuButton = findViewById(R.id.Menu_button);
         openText = findViewById(R.id.textView3);
         addButton = findViewById(R.id.fabAdd);
 
 
         Fragment _menu = new MenuFragment();
-        Fragment _man = new ProfileFragment();
+        Fragment _man = new SignInFragment();
         Fragment _calendar = new CalendarFragment();
         Fragment _plus = new PlusFragment();
         Fragment _people = new GroupFragment();
 
 
         Touch(menuButton, _menu);Touch(manButton, _man);Touch(calendarButton, _calendar);
-        Touch(plusButton, _plus);Touch(peopleButton, _people);
+        Touch(plusButton, _plus);Touch(signInButton, _people);
 
         addButtonClick();
 
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements FragmentAdd.Fragm
         manButton.setColorFilter(0xFFC8C8C8);
         plusButton.setColorFilter(0xFFC8C8C8);
         calendarButton.setColorFilter(0xFFC8C8C8);
-        peopleButton.setColorFilter(0xFFC8C8C8);
+        signInButton.setColorFilter(0xFFC8C8C8);
         menuButton.setColorFilter(0xFFC8C8C8);
     }
 
