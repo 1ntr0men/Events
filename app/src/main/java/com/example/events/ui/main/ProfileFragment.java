@@ -82,9 +82,13 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 String email = email_line.getText().toString();
                 String password = password_line.getText().toString();
+                Log.i(TAG, "mi zdes");
                 SignUp(email, password);
             }
         });
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
     }
 
     public ProfileFragment() {
@@ -119,13 +123,13 @@ public class ProfileFragment extends Fragment {
     }
 
 
-
-    private void SignIn(String email, String password){
+    private void SignIn(String email, String password) {
     }
 
-    private void SignUp(String email, String password){
+    private void SignUp(String email, String password) {
 
-        Log.d(TAG, "signUp:" + email);
+        Log.i(TAG, "signUp:" + email);
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
@@ -133,8 +137,7 @@ public class ProfileFragment extends Fragment {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                        }
-                        else{
+                        } else {
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(getContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
@@ -143,5 +146,5 @@ public class ProfileFragment extends Fragment {
                     }
                 });
     }
-}
 
+}
