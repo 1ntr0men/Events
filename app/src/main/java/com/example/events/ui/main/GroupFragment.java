@@ -8,17 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.events.MainActivity;
 import com.example.events.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ManFragment#newInstance} factory method to
+ * Use the {@link GroupFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ManFragment extends Fragment {
-
-    MainActivity m;
+public class GroupFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,7 +26,7 @@ public class ManFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ManFragment() {
+    public GroupFragment() {
         // Required empty public constructor
     }
 
@@ -39,11 +36,11 @@ public class ManFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ManFragment.
+     * @return A new instance of fragment PeopleFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ManFragment newInstance(String param1, String param2) {
-        ManFragment fragment = new ManFragment();
+    public static GroupFragment newInstance(String param1, String param2) {
+        GroupFragment fragment = new GroupFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +61,6 @@ public class ManFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_man, container, false);
+        return inflater.inflate(R.layout.fragment_group, container, false);
     }
 }
