@@ -40,9 +40,28 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     // Firebase Authentication (Java)
-    implementation 'com.google.firebase:firebase-auth'
+
     implementation 'com.google.firebase:firebase-analytics'
     // Firebase UI
     // Used in FirebaseUIActivity.
     implementation 'com.firebaseui:firebase-ui-auth:7.1.1'
+    // Import the Firebase BoM (see: https://firebase.google.com/docs/android/learn-more#bom)
+    implementation platform('com.google.firebase:firebase-bom:27.0.0')
+
+    // Firebase Realtime Database (Java)
+    implementation 'com.google.firebase:firebase-database'
+
+    // Firebase Realtime Database (Kotlin)
+    implementation 'com.google.firebase:firebase-database-ktx'
+
+    // Firebase Authentication (Java)
+    implementation 'com.google.firebase:firebase-auth'
+
+    // Firebase Authentication (Kotlin)
+    implementation 'com.google.firebase:firebase-auth-ktx'
+
+    implementation 'com.firebaseui:firebase-ui-database:7.1.1'
+
+    // Needed to fix a dependency conflict with FirebaseUI'
+    implementation 'androidx.arch.core:core-runtime:2.1.0'
 }
