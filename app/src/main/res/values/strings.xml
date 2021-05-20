@@ -7,4 +7,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_event">Add new event</string>
     <string name="today">Today</string>
+    <string name="sign_in_successful">Sign in successful</string>
+    <string name="sign_in_failed">Sign in is failed</string>
 </resources>

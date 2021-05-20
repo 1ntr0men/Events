@@ -65,7 +65,6 @@ public class SignInFragment extends Fragment {
         EditText password_line = view.findViewById(R.id.passwordInput);
 
 
-
         sign_in_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +82,6 @@ public class SignInFragment extends Fragment {
                 SignUp(email, password, view);
             }
         });
-
 
 
         // Initialize Firebase Auth
@@ -123,32 +121,28 @@ public class SignInFragment extends Fragment {
 
 
     private void SignIn(String email, String password, View view) {
-//        Log.i(TAG, "signIn:" + email);
-//
-//        mAuth.signInWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
-//                            // Sign in success, update UI with the signed-in user's information
-//                            Log.d(TAG, "signInWithEmail:success");
-//                            FirebaseUser user = mAuth.getCurrentUser();
-//
-////                        } else {
-////                            // If sign in fails, display a message to the user.
-////                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-////                            Toast.makeText(getContext(), "Authentication failed.",
-////                                    Toast.LENGTH_SHORT).show();
-////                            updateUI(null);
-////                            checkForMultiFactorFailure(task.getException());
-////                        }
-////
-////                        if (!task.isSuccessful()) {
-////                            mBinding.status.setText(R.string.auth_failed);
-////                        }
-////                        hideProgressBar();
-//                    }
-//                });
+        Log.i(TAG, "signIn:" + email);
+        TextView text_message = view.findViewById(R.id.message_text_view);
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            text_message.setText(R.string.sign_in_successful);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(getContext(), "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+
+                            text_message.setText(R.string.sign_in_failed);
+                        }
+                    }
+                });
     }
 
     private void SignUp(String email, String password, View view) {
