@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "384958671396",
+    "firebase_url": "https://calendarband-41b42-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "calendarband-41b42",
     "storage_bucket": "calendarband-41b42.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "384958671396-11cucqpadbafjg5mob31ch1b607as7g0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.events",
+            "certificate_hash": "9e00eb65e1dd506ced96430692dfa59e16023bc3"
+          }
+        },
         {
           "client_id": "384958671396-biccc8vklkllf09ubk3ftpalksib8cni.apps.googleusercontent.com",
           "client_type": 3
