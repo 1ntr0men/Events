@@ -190,7 +190,6 @@ public class SignInFragment extends Fragment {
 
     private void writeNewUser(String userId, String name, String email){
         User user = new User(name, email);
-        Log.i("ВОТ ТУТ", "ОНО БЛЯТЬ ЗАХОДИТ СЮДА");
         mDatabase.child("users").child(userId).setValue(user);
     }
 }

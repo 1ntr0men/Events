@@ -30,11 +30,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentAdd#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FragmentAdd extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -62,18 +57,10 @@ public class FragmentAdd extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        String url = "https://calendarband-41b42-default-rtdb.europe-west1.firebasedatabase.app/";
+        mDatabase = FirebaseDatabase.getInstance(url).getReference();
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentAdd.
-     */
-    // TODO: Rename and change types and number of parameters
     public static FragmentAdd newInstance(String param1, String param2) {
         FragmentAdd fragment = new FragmentAdd();
         Bundle args = new Bundle();
@@ -126,9 +113,10 @@ public class FragmentAdd extends Fragment {
                 String tag = tagEdit.getText().toString();
                 String description = descriptionEdit.getText().toString();
 
+                submitEvent(name, tag, description);
                 transfer = (FragmentTransfer) myContext;
                 transfer.returnBack();  //выполняем метод, реализованный в MainActivity
-                submitEvent(name, tag, description);
+
             }
         });
         return view;
@@ -140,7 +128,7 @@ public class FragmentAdd extends Fragment {
 
     private void submitEvent(String name, String tag, String description) {
 
-        // Возможны ошибки! именно тут
+
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         mDatabase.child("users").child(userId).addListenerForSingleValueEvent(
                 new ValueEventListener() {
@@ -175,12 +163,12 @@ public class FragmentAdd extends Fragment {
         String time = dt[3];
 
         String key = mDatabase.child("events").push().getKey();
-        Event event = new Event(title, description, tag, date, time);
+        Event event = new Event(userId, title, description, tag, date, time);
         Map<String, Object> eventValues = event.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/events/" + key, eventValues);
-        childUpdates.put("/user-posts/" + userId + "/" + key, eventValues);
+
 
         mDatabase.updateChildren(childUpdates);
     }

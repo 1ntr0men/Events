@@ -7,6 +7,7 @@ public class User {
 
     public String name;
     public String email;
+    public int group_id;
 
 
     public User() {
@@ -16,6 +17,7 @@ public class User {
     public User(String name, String email) {
         this.name = name;
         this.email = email;
+        this.group_id = 0;
     }
 
 }
