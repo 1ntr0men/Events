@@ -34,7 +34,7 @@ public class CalendarFragment extends Fragment {
     ListView listView;
     ConstraintLayout event;
     RecyclerView recyclerView;
-    ArrayList<Event> arr= new ArrayList<>();;
+    ArrayList<Event> arr = new ArrayList<>();
     EventAdapter eventAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -99,7 +99,7 @@ public class CalendarFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         //arr.add(new Event("20", "Покушать","пример 'ивента'","#tmp","20.07.21","07:00"));
-        eventAdapter = new EventAdapter(arr, view.getContext());
+        eventAdapter = new EventAdapter(arr, view.getContext(), this);
         recyclerView.setAdapter(eventAdapter);
        // eventAdapter.addEvent(new Event("20", "Покушать","пример 'ивента'","#tmp","20.07.21","07:00"));
        // ArrayAdapter<ConstraintLayout> adapter;
@@ -114,6 +114,11 @@ public class CalendarFragment extends Fragment {
 
     public void createEvent(Event ev) {
         arr.add(ev);
+        eventAdapter.notifyDataSetChanged();
+    }
+
+    public void deleteEvent(int position) {
+        arr.remove(position);
         eventAdapter.notifyDataSetChanged();
     }
 }

@@ -4,11 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.events.CalendarFragment;
 import com.example.events.R;
 import com.example.events.models.Event;
 
@@ -19,10 +21,12 @@ import java.util.ArrayList;
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyItem> {
     private Context context;
     private ArrayList<Event> event;
+    private CalendarFragment fragmentToWorkWithArr;
 
-    public EventAdapter(ArrayList<Event> e, Context c) {
+    public EventAdapter(ArrayList<Event> e, Context c, CalendarFragment fragment) {
         this.context = c;
         this.event = e;
+        fragmentToWorkWithArr = fragment;
     }
 
     @NonNull
@@ -39,6 +43,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyItem> {
         holder.descriptionView.setText(event.get(position).getDescription());
         holder.timeView.setText(event.get(position).getTime());
         holder.tagsView.setText(event.get(position).getTags());
+        holder.deleteImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentToWorkWithArr.deleteEvent(position);
+            }
+        });
     }
 
     @Override
@@ -50,6 +60,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyItem> {
         private TextView descriptionView;
         private TextView timeView;
         private TextView tagsView;
+        private ImageView deleteImage;
 
         public MyItem(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -57,6 +68,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyItem> {
             descriptionView = itemView.findViewById(R.id.Description);
             timeView = itemView.findViewById(R.id.timeStart);
             tagsView = itemView.findViewById(R.id.tags);
+            deleteImage = itemView.findViewById(R.id.deleteImage);
         }
     }
+
 }

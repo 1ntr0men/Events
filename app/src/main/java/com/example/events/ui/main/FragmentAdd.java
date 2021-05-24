@@ -118,7 +118,7 @@ public class FragmentAdd extends Fragment {
                 String time = timeEdit.getText().toString();
 
                 transfer = (FragmentTransfer) myContext;
-                //submitEvent(name, tag, description);
+                submitEvent(name, tag, description);
                 transfer.returnBack();
                 //Log.d("TTTT", Integer.toString(((CalendarFragment)transfer.getCalendar()).getEventAdapter().getItemCount())) ;
                 transfer.addEvent(new Event("20", name,description,tag,"20.07.21", time));
