@@ -118,6 +118,7 @@ public class CalendarFragment extends Fragment {
     }
 
     public void deleteEvent(int position) {
+        arr.get(position).getOwner_id();
         arr.remove(position);
         eventAdapter.notifyDataSetChanged();
     }
