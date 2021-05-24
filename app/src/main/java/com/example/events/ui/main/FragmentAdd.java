@@ -41,10 +41,10 @@ public class FragmentAdd extends Fragment {
     private FloatingActionButton okButton;
     private FragmentTransfer transfer;
     private Context myContext;
-    private Context myContext2;
     private EditText nameEdit;
     private EditText tagEdit;
     private EditText descriptionEdit;
+    private EditText timeEdit;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -99,6 +99,7 @@ public class FragmentAdd extends Fragment {
         nameEdit = view.findViewById(R.id.editName);
         tagEdit = view.findViewById(R.id.editTag);
         descriptionEdit = view.findViewById(R.id.editDescription);
+        timeEdit = view.findViewById(R.id.editTime);
 
         //код для фокусирования на nameEdit
         nameEdit.clearFocus();
@@ -114,12 +115,14 @@ public class FragmentAdd extends Fragment {
                 String name = nameEdit.getText().toString();
                 String tag = tagEdit.getText().toString();
                 String description = descriptionEdit.getText().toString();
+                String time = timeEdit.getText().toString();
+
                 transfer = (FragmentTransfer) myContext;
                 //submitEvent(name, tag, description);
                 transfer.returnBack();
-                Log.d("TTTT", Integer.toString(((CalendarFragment)transfer.getCalendar()).getEventAdapter().getItemCount())) ;
-                transfer.addEvent(new Event("20", name,description,tag,"20.07.21","07:00"));
-                Log.d("TTTT", Integer.toString(((CalendarFragment)transfer.getCalendar()).getEventAdapter().getItemCount())) ;
+                //Log.d("TTTT", Integer.toString(((CalendarFragment)transfer.getCalendar()).getEventAdapter().getItemCount())) ;
+                transfer.addEvent(new Event("20", name,description,tag,"20.07.21", time));
+                //Log.d("TTTT", Integer.toString(((CalendarFragment)transfer.getCalendar()).getEventAdapter().getItemCount())) ;
                   //выполняем метод, реализованный в MainActivity
 
             }
