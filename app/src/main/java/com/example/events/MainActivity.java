@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
 
+import com.example.events.models.Event;
 import com.example.events.ui.main.FragmentAdd;
 import com.example.events.ui.main.SignInFragment;
 import com.example.events.ui.main.MenuFragment;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements FragmentAdd.Fragm
     public FloatingActionButton addButton;
     private boolean ISADDFRAGMENTOPENED=false;
     private FragmentManager fragmentManager;
+    private CalendarFragment _calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements FragmentAdd.Fragm
 
         Fragment _menu = new MenuFragment();
         Fragment _man = new SignInFragment();
-        Fragment _calendar = new CalendarFragment();
+
+        _calendar = new CalendarFragment();
         Fragment _plus = new PlusFragment();
         Fragment _people = new GroupFragment();
 
@@ -139,6 +142,9 @@ public class MainActivity extends AppCompatActivity implements FragmentAdd.Fragm
         //TODO: fix bug with button highlight
        // fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+        if(_calendar.getEventAdapter()!=null) {
+            _calendar.getEventAdapter().notifyDataSetChanged();
+        }
     }
 
     private void makeButtonsClear(){
@@ -155,9 +161,11 @@ public class MainActivity extends AppCompatActivity implements FragmentAdd.Fragm
     }
 
     private void addButtonClick(){
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               // _calendar.createEvent(new Event("20", "Покушать","пример 'ивента'","#tmp","20.07.21","07:00"));
                 ISADDFRAGMENTOPENED = true; //отслеживание открытия фрагмента
                 setAddButtonVisibility(View.GONE);
                 Fragment addFragment = new FragmentAdd();
@@ -226,7 +234,17 @@ public class MainActivity extends AppCompatActivity implements FragmentAdd.Fragm
 
     @Override
     public void returnBack() {      //имплементированный метод из FragmentAdd для реализации кнопки ок
-       //Log.d("RRR","Ok!");
-        fragmentManager.popBackStack();
+        loadFragment(_calendar);
+        setAddButtonVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public Fragment getCalendar() {
+        return _calendar;
+    }
+
+    @Override
+    public void addEvent(Event ev) {
+        _calendar.createEvent(ev);
     }
 }

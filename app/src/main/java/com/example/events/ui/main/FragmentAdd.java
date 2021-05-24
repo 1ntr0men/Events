@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.events.CalendarFragment;
 import com.example.events.R;
 import com.example.events.models.Event;
 import com.example.events.models.User;
@@ -36,10 +37,11 @@ public class FragmentAdd extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private Fragment Frag;
     private FloatingActionButton okButton;
     private FragmentTransfer transfer;
     private Context myContext;
+    private Context myContext2;
     private EditText nameEdit;
     private EditText tagEdit;
     private EditText descriptionEdit;
@@ -112,10 +114,13 @@ public class FragmentAdd extends Fragment {
                 String name = nameEdit.getText().toString();
                 String tag = tagEdit.getText().toString();
                 String description = descriptionEdit.getText().toString();
-
-                submitEvent(name, tag, description);
                 transfer = (FragmentTransfer) myContext;
-                transfer.returnBack();  //выполняем метод, реализованный в MainActivity
+                //submitEvent(name, tag, description);
+                transfer.returnBack();
+                Log.d("TTTT", Integer.toString(((CalendarFragment)transfer.getCalendar()).getEventAdapter().getItemCount())) ;
+                transfer.addEvent(new Event("20", name,description,tag,"20.07.21","07:00"));
+                Log.d("TTTT", Integer.toString(((CalendarFragment)transfer.getCalendar()).getEventAdapter().getItemCount())) ;
+                  //выполняем метод, реализованный в MainActivity
 
             }
         });
@@ -124,6 +129,8 @@ public class FragmentAdd extends Fragment {
 
     public interface FragmentTransfer {  //интерфейс для связи с MainActivity
         public void returnBack();
+        public Fragment getCalendar();
+        public void addEvent(Event ev);
     }
 
     private void submitEvent(String name, String tag, String description) {
