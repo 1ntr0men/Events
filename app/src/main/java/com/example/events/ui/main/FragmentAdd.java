@@ -173,6 +173,7 @@ public class FragmentAdd extends Fragment {
       //  return id;
     }
 
+
     public String writeNewEvent(String userId, String username, String title, String tag, String description) {
         Date datetime = new Date();
         String[] dt = datetime.toString().split(" ");
