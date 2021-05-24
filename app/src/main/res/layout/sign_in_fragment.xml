@@ -14,6 +14,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:ems="10"
+        android:fontFamily="@font/didact_gothic"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/emailInput"
         app:layout_constraintHorizontal_bias="0.0"
@@ -26,8 +27,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="50dp"
+        android:backgroundTint="#C8C8C8"
+        android:fontFamily="@font/didact_gothic"
         android:text="Create Account"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toEndOf="@+id/signInButton"
         app:layout_constraintTop_toBottomOf="@+id/passwordInput" />
 
     <Button
@@ -36,6 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
+        android:backgroundTint="#C8C8C8"
+        android:fontFamily="@font/didact_gothic"
         android:text="Sign In"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordInput" />
@@ -46,6 +53,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="200dp"
         android:ems="10"
+        android:fontFamily="@font/didact_gothic"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -56,6 +64,7 @@
         android:id="@+id/main_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/didact_gothic"
         android:text="Sign Up / Sign In"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/emailInput"
@@ -68,6 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/didact_gothic"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
