@@ -157,10 +157,11 @@ public class FragmentAdd extends Fragment {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new post
-                            String owner_id = writeNewEvent(userId, user.name, name, tag, description);
+                            String owner_id = writeNewEvent(userId, user.name, name, tag, description, time);
                             Log.i("nnnnn", owner_id);
                             id = owner_id;
-                            transfer.addEvent(new Event(id, name,description,tag,"20.07.21", time));
+                            //mDatabase.child("events").child(id).getDatabase().
+                            //transfer.addEvent(new Event(id, name,description,tag,"20.07.21", time));
                             Log.i("nnnnn", id);
                         }
                     }
@@ -174,14 +175,16 @@ public class FragmentAdd extends Fragment {
     }
 
 
-    public String writeNewEvent(String userId, String username, String title, String tag, String description) {
-        Date datetime = new Date();
-        String[] dt = datetime.toString().split(" ");
-        String date = dt[1] + " " + dt[2] + " " + dt[5];
-        String time = dt[3];
+    public String writeNewEvent(String userId, String username, String title, String tag, String description, String time) {
+        //Date datetime = new Date();
+        //String[] dt = datetime.toString().split(" ");
+        String date = "20.07.21"/*dt[1] + " " + dt[2] + " " + dt[5]*/;
+        //String time = dt[3];
 
         String key = mDatabase.child("events").push().getKey();
+        //mDatabase.child("events").child(key).get().getResult().getValue(Event.class).setId(id);
         Event event = new Event(userId, title, description, tag, date, time);
+        event.setId(key);
         Map<String, Object> eventValues = event.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();

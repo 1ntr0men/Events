@@ -10,6 +10,15 @@ import java.util.Map;
 public class Event {
 
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String id="default";
     public String owner_id;
     public String title;
     public String date;
@@ -42,6 +51,7 @@ public class Event {
         result.put("time", time);
         result.put("description", description);
         result.put("tags", tags);
+        result.put("id", id);
 
         return result;
 
