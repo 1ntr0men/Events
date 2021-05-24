@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import android.widget.ListView;
 import com.example.events.models.Event;
 import com.example.events.ui.main.EventAdapter;
 import com.example.events.ui.main.FragmentAdd;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -36,6 +39,8 @@ public class CalendarFragment extends Fragment {
     RecyclerView recyclerView;
     ArrayList<Event> arr = new ArrayList<>();
     EventAdapter eventAdapter;
+    String url = "https://calendarband-41b42-default-rtdb.europe-west1.firebasedatabase.app/";
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance(url).getReference();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -92,8 +97,8 @@ public class CalendarFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
- //       listView = view.findViewById(R.id.eventList);
- //       event = view.findViewById(R.id.typicalEvent);
+        //       listView = view.findViewById(R.id.eventList);
+        //       event = view.findViewById(R.id.typicalEvent);
         recyclerView = view.findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -101,8 +106,8 @@ public class CalendarFragment extends Fragment {
         //arr.add(new Event("20", "Покушать","пример 'ивента'","#tmp","20.07.21","07:00"));
         eventAdapter = new EventAdapter(arr, view.getContext(), this);
         recyclerView.setAdapter(eventAdapter);
-       // eventAdapter.addEvent(new Event("20", "Покушать","пример 'ивента'","#tmp","20.07.21","07:00"));
-       // ArrayAdapter<ConstraintLayout> adapter;
+        // eventAdapter.addEvent(new Event("20", "Покушать","пример 'ивента'","#tmp","20.07.21","07:00"));
+        // ArrayAdapter<ConstraintLayout> adapter;
         //listView.addView(view.findViewById(R.id.typicalEvent));
         v = view;
         return view;
@@ -118,7 +123,10 @@ public class CalendarFragment extends Fragment {
     }
 
     public void deleteEvent(int position) {
+        String owner_id = arr.get(position).getOwner_id();
+        Log.i("QQQQQQQQQQQQQQQ", owner_id);
         arr.remove(position);
         eventAdapter.notifyDataSetChanged();
+        mDatabase.child("events").child(owner_id).removeValue();
     }
 }

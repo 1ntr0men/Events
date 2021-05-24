@@ -45,6 +45,7 @@ public class FragmentAdd extends Fragment {
     private EditText tagEdit;
     private EditText descriptionEdit;
     private EditText timeEdit;
+    private String id ="WAITFORSERVER";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -118,10 +119,11 @@ public class FragmentAdd extends Fragment {
                 String time = timeEdit.getText().toString();
 
                 transfer = (FragmentTransfer) myContext;
-                submitEvent(name, tag, description);
+                submitEvent(name, tag, description, time);
+
                 transfer.returnBack();
-                //Log.d("TTTT", Integer.toString(((CalendarFragment)transfer.getCalendar()).getEventAdapter().getItemCount())) ;
-                transfer.addEvent(new Event("20", name,description,tag,"20.07.21", time));
+                Log.i("TTTT", id) ;
+
                 //Log.d("TTTT", Integer.toString(((CalendarFragment)transfer.getCalendar()).getEventAdapter().getItemCount())) ;
                   //выполняем метод, реализованный в MainActivity
 
@@ -136,9 +138,9 @@ public class FragmentAdd extends Fragment {
         public void addEvent(Event ev);
     }
 
-    private void submitEvent(String name, String tag, String description) {
+    private void submitEvent(String name, String tag, String description, String time) {
 
-
+        final String[] str1 = new String[1];
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         mDatabase.child("users").child(userId).addListenerForSingleValueEvent(
                 new ValueEventListener() {
@@ -155,7 +157,11 @@ public class FragmentAdd extends Fragment {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new post
-                            writeNewEvent(userId, user.name, name, tag, description);
+                            String owner_id = writeNewEvent(userId, user.name, name, tag, description);
+                            Log.i("nnnnn", owner_id);
+                            id = owner_id;
+                            transfer.addEvent(new Event(id, name,description,tag,"20.07.21", time));
+                            Log.i("nnnnn", id);
                         }
                     }
 
@@ -164,9 +170,10 @@ public class FragmentAdd extends Fragment {
                         Log.w("FragmentAdd", "getUser:onCancelled", databaseError.toException());
                     }
                 });
+      //  return id;
     }
 
-    private void writeNewEvent(String userId, String username, String title, String tag, String description) {
+    public String writeNewEvent(String userId, String username, String title, String tag, String description) {
         Date datetime = new Date();
         String[] dt = datetime.toString().split(" ");
         String date = dt[1] + " " + dt[2] + " " + dt[5];
@@ -181,5 +188,7 @@ public class FragmentAdd extends Fragment {
 
 
         mDatabase.updateChildren(childUpdates);
+        Log.i("YYYYY", key);
+        return key;
     }
 }

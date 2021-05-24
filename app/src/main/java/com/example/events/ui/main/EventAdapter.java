@@ -47,6 +47,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyItem> {
             @Override
             public void onClick(View v) {
                 fragmentToWorkWithArr.deleteEvent(position);
+
             }
         });
     }
@@ -71,5 +72,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyItem> {
             deleteImage = itemView.findViewById(R.id.deleteImage);
         }
     }
+
 
 }
