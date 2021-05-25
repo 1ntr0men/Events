@@ -141,21 +141,15 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
-        //       listView = view.findViewById(R.id.eventList);
-        //       event = view.findViewById(R.id.typicalEvent);
         recyclerView = view.findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
-
-        //arr.add(new Event("20", "Покушать","пример 'ивента'","#tmp","20.07.21","07:00"));
         eventAdapter = new EventAdapter(arr, view.getContext(), this);
         recyclerView.setAdapter(eventAdapter);
-        // eventAdapter.addEvent(new Event("20", "Покушать","пример 'ивента'","#tmp","20.07.21","07:00"));
-        // ArrayAdapter<ConstraintLayout> adapter;
-        //listView.addView(view.findViewById(R.id.typicalEvent));
+
         v = view;
         return view;
     }

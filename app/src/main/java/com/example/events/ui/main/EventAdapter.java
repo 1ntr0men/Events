@@ -72,6 +72,4 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyItem> {
             deleteImage = itemView.findViewById(R.id.deleteImage);
         }
     }
-
-
 }
